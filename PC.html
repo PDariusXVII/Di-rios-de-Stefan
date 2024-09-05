@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIÁRIOS DE STEFAN PC</title>
+      <!-- Adicione o favicon aqui -->
+      <link rel="icon" href="https://img.icons8.com/?size=100&id=49467&format=png&color=000000" type="image/png">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+      <style>
+          
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: black;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    :root {
+      --light: #ffe6e6;
+      --dark: #000;
+    }
+
+    .container {
+      --bg-color: radial-gradient(circle at 50% 0%,
+          rgba(50, 50, 50, 1) 0%,
+          rgba(12, 12, 12, 1) 100%);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 5rem;
+      width: 100%;
+      height: 100vh;
+      background-image: var(--bg-color);
+    }
+
+    .category_container {
+      --gap: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: calc(var(--gap) * 2);
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    @media (max-width: 550px) {
+      .category_container {
+        flex-direction: column;
+      }
+    }
+
+    .content {
+      --active: 0;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      padding: 2.5rem;
+      width: calc((100% / 3) - var(--gap));
+      height: 100%;
+      border-radius: 1rem;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .content:hover {
+      --active: 1;
+      width: calc(70% - var(--gap));
+    }
+
+    .content::before {
+      content: "";
+      position: absolute;
+      z-index: -10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--dark);
+      opacity: 0.6;
+    }
+
+    .content img {
+      position: absolute;
+      z-index: -20;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .content .profile_image {
+      opacity: calc(1 - var(--active));
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .profile_detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 12rem;
+      transition: transform 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.01s;
+    }
+
+    .profile_detail span {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--light);
+      white-space: nowrap;
+    }
+
+    .profile_detail p {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--light);
+    }
+
+    .profile_quote {
+      width: 22rem;
+      transform: translate(0, calc((1 - var(--active)) * (100% + 2.5rem)));
+    }
+
+    .profile_quote p {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--light);
+      transform: translate(0, calc((1 - var(--active)) * (100% + 2.5rem)));
+      transition: transform 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.1s;
+    }
+
+    .wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: grid-template-rows 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.01s;
+    }
+
+    .content:hover .wrapper {
+      grid-template-rows: 1fr;
+    }
+
+    .content:hover .profile_quote {
+      transform: none;
+      opacity: 1;
+    }
+
+    .icon-link {
+      position: fixed;
+      top: 10px; /* Fixado no topo */
+      right: 10px; /* Ajuste conforme necessário */
+      background: rgba(255, 255, 255, 0);
+      border-radius: 30%;
+      padding: 0px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .icon-link img {
+      width: 40px; /* Ajuste o tamanho conforme necessário */
+      height: 40px; /* Ajuste o tamanho conforme necessário */
+    }
+
+    #source-link {
+      top: 120px;
+    }
+
+    #source-link>i {
+      color: rgb(94, 106, 210);
+    }
+
+    #yt-link {
+      top: 65px;
+    }
+
+    #yt-link>i {
+      color: rgb(219, 31, 106);
+    }
+
+    #Fund-link {
+      top: 10px;
+    }
+
+    #Fund-link>i {
+      color: rgb(255, 251, 0);
+    }
+
+    .meta-link {
+      align-items: center;
+      backdrop-filter: blur(3px);
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      display: inline-flex;
+      gap: 5px;
+      left: 10px;
+      padding: 10px 20px;
+      position: fixed;
+      text-decoration: none;
+      transition: background-color 600ms, border-color 600ms;
+      z-index: 10000;
+    }
+
+    .meta-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .meta-link>i,
+    .meta-link>span {
+      height: 20px;
+      line-height: 20px;
+    }
+
+    .meta-link>span {
+      color: white;
+      font-family: "Rubik", sans-serif;
+      transition: color 600ms;
+    }
+
+    /* Estilos para os pontos animados */
+    .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: 50%;
+      transform-origin: center;
+      animation: move 5s infinite linear, changeColor 5s infinite alternate;
+    }
+
+    @keyframes move {
+      0% {
+        transform: rotate(0deg) translateX(100px) rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg) translateX(100px) rotate(-360deg);
+      }
+    }
+
+    @keyframes changeColor {
+      0% {
+        background-color: white;
+      }
+
+      100% {
+        background-color: gray;
+      }
+    }
+
+    .dot:nth-child(1) {
+      animation-duration: 5s;
+      top: 10%;
+      left: 20%;
+    }
+
+    .dot:nth-child(2) {
+      animation-duration: 7s;
+      top: 30%;
+      left: 50%;
+    }
+
+    .dot:nth-child(3) {
+      animation-duration: 6s;
+      top: 50%;
+      left: 70%;
+    }
+
+    .dot:nth-child(4) {
+      animation-duration: 8s;
+      top: 70%;
+      left: 40%;
+    }
+
+    .dot:nth-child(5) {
+      animation-duration: 9s;
+      top: 80%;
+      left: 60%;
+    }
+
+    .dot:nth-child(6) {
+      animation-duration: 10s;
+      top: 90%;
+      left: 80%;
+    }
+
+    /* Estilos para o loader */
+    .loader {
+      height: 30px;
+      aspect-ratio: 2;
+      display: grid;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background:
+        radial-gradient(farthest-side, #000 15%, #0000 18%) 0 0 / 50% 100%,
+        radial-gradient(50% 100% at 50% 160%, #fff 95%, #0000) 0 0 / 50% 50%,
+        radial-gradient(50% 100% at 50% -60%, #fff 95%, #0000) 0 100% / 50% 50%;
+      background-repeat: repeat-x;
+      animation: l2 1.5s infinite linear;
+    }
+
+    @keyframes l2 {
+      0%, 15% {
+        background-position: 0 0, 0 0, 0 100%;
+      }
+
+      20%, 40% {
+        background-position: 5px 0, 0 0, 0 100%;
+      }
+
+      45%, 55% {
+        background-position: 0 0, 0 0, 0 100%;
+      }
+
+      60%, 80% {
+        background-position: -5px 0, 0 0, 0 100%;
+      }
+
+      85%, 100% {
+        background-position: 0 0, 0 0, 0 100%;
+      }
+    }
+
+    /* Estilos para o link ao redor das imagens */
+    .content a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    /* Estilos para as setas de navegação */
+    .arrow-container {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .arrow {
+      width: 40px;
+      height: 40px;
+      background: rgba(54, 54, 54, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: 80%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+   .arrow-left {
+      background-image: url('https://img.icons8.com/?size=100&id=52985&format=png&color=000000');
+    }
+
+    .arrow-right {
+      background-image: url('https://img.icons8.com/?size=100&id=53000&format=png&color=000000');
+    }
+
+  </style>
+</head>
+<!--CAR1 PADRÃO, NUNCA ALTERAR-->
+<body>
+   <!--CAR1-->
+  <section class="container">
+    <div class="category_container">
+      <div class="content">
+        <a href="LIVROS\Origens - Diarios do Vampiro   Diarios de Stefan - Vol. 1  - L. J. Smith.pdf" download target="_blank">
+          <img src="IMAGENS\1.jpg" class="profession_image" alt="Profissão">
+          <img src="\IMAGENS\art.jpg" class="profile_image" alt="Perfil">
+        </a>
+        <div class="profile_detail">
+          <span>Diários de Stefan</span>
+          <p>Origens</p>
+        </div>
+        <div class="wrapper">
+          <div class="profile_quote">
+            <p>L. J. Smith</p>
+          </div>
+        </div>
+      </div>
+
+         <!--CAR2-->
+      <div class="content">
+        <a href="LIVROS\Diários de Stefan 02 - Sede de sangue - L. J. Smith.pdf" download target="_blank">
+          <img src="IMAGENS\2.jpg" class="profession_image" alt="Profissão">
+          <img src="\IMAGENS\art.jpg" class="profile_image" alt="Perfil">
+        </a>
+        <div class="profile_detail">
+          <span>Diários de Stefan</span>
+          <p>Sede de Sangue</p>
+        </div>
+        <div class="wrapper">
+          <div class="profile_quote">
+            <p>L. J. Smith</p>
+          </div>
+        </div>
+      </div>
+
+       <!--CAR3-->
+      <div class="content">
+        <a href="LIVROS\Diários de Stefan 03 - Desejo - L. J. Smith.pdf" download target="_blank">
+          <img src="IMAGENS\3.jpg" class="profession_image" alt="Profissão">
+          <img src="\IMAGENS\art.jpg" class="profile_image" alt="Perfil">
+        </a>
+        <div class="profile_detail">
+          <span>Diários de Stefan</span>
+          <p>Desejo</p>
+        </div>
+        <div class="wrapper">
+          <div class="profile_quote">
+            <p>L. J. Smith</p>
+          </div>
+        </div>
+      </div>
+
+       <!--CAR4-->
+      <div class="content">
+        <a href="LIVROS\O Estripador - Diarios de Stefan - Vol.  4  - L.J Smith.pdf" download target="_blank">
+          <img src="IMAGENS\4.jpg" class="profession_image" alt="Profissão">
+          <img src="\IMAGENS\art.jpg" class="profile_image" alt="Perfil">
+        </a>
+        <div class="profile_detail">
+          <span>Diários de Stefan</span>
+          <p>O Estripador</p>
+        </div>
+        <div class="wrapper">
+          <div class="profile_quote">
+            <p>L. J. Smith</p>
+          </div>
+        </div>
+      </div>
+
+      
+         <!--CAR5-->
+         <div class="content">
+          <a href="LIVROS\Diário do Stefan 5 - O Asilo.pdf" download target="_blank">
+            <img src="IMAGENS\5.jpg" class="profession_image" alt="Profissão">
+            <img src="\IMAGENS\art.jpg" class="profile_image" alt="Perfil">
+          </a>
+          <div class="profile_detail">
+            <span>Diários de Stefan</span>
+            <p>O Asilo</p>
+          </div>
+          <div class="wrapper">
+            <div class="profile_quote">
+              <p>L. J. Smith</p>
+            </div>
+          </div>
+        </div>
+    
+       <!--CAR6-->
+      <div class="content">
+        <a href="LIVROS\Stefan's Diaries The Compelled.pdf" download target="_blank">
+          <img src="IMAGENS\6.jpg" class="profession_image" alt="Profissão">
+          <img src="\IMAGENS\art.jpg" class="profile_image" alt="Perfil">
+        </a>
+        <div class="profile_detail">
+          <span>Diários de Stefan</span>
+          <p>The Compelled</p>
+        </div>
+        <div class="wrapper">
+          <div class="profile_quote">
+            <p>L. J. Smith</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adicionar pontos animados -->
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    
+
+    <!-- Adicionar loader -->
+    <div class="loader"></div>
+    <div class="loader"></div>
+    <div class="loader"></div>
+    <div class="loader"></div>
+    
+
+    <!-- Adicionar setas de navegação -->
+    <div class="arrow-container">
+      <div class="arrow arrow-left"></div>
+      <div class="arrow arrow-right"></div>
+    </div>
+  </div>
+  </section>
+
+  <script>
+    const container = document.querySelector('.category_container');
+    const cards = document.querySelectorAll('.content');
+    const prevArrow = document.querySelector('.arrow-left');
+    const nextArrow = document.querySelector('.arrow-right');
+    let currentIndex = 0;
+
+    function updateCards() {
+      const cardWidth = cards[0].offsetWidth;
+      const offset = -currentIndex * cardWidth;
+      container.style.transform = `translateX(${offset}px)`;
+    }
+
+    prevArrow.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCards();
+      }
+    });
+
+    nextArrow.addEventListener('click', () => {
+      if (currentIndex < cards.length - 1) {
+        currentIndex++;
+        updateCards();
+      }
+    });
+
+  </script>
+</body>
+</html>

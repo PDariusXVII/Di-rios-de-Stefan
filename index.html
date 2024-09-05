@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOME DA COLEÇÃO</title>
+    <script>
+        // Função para detectar se o acesso é feito a partir de um dispositivo móvel ou desktop
+        function detectarDispositivo() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Detecção básica para dispositivos móveis
+            if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
+                redirecionarParaMobile();
+            } else {
+                // Código para desktop
+                redirecionarParaDesktop();
+            }
+        }
+
+        // Função para redirecionar para dispositivos móveis
+        function redirecionarParaMobile() {
+            console.log("Redirecionando para dispositivo móvel");
+            // Redirecionar automaticamente (substitua pela URL desejada para dispositivos móveis)
+            window.location.href = "MB.html";
+        }
+
+        // Função para redirecionar para desktops
+        function redirecionarParaDesktop() {
+            console.log("Redirecionando para desktop");
+            // Redirecionar automaticamente (substitua pela URL desejada para desktops)
+            window.location.href = "PC.html";
+        }
+
+        // Chama a função ao carregar a página
+        window.onload = detectarDispositivo;
+    </script>
+</head>
+<body>
+    <h1>Detectando Dispositivo...</h1>
+</body>
+</html>

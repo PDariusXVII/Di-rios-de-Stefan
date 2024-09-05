@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIÁRIOS DE STEFAN MB</title>
+      <!-- Adicione o favicon aqui -->
+      <link rel="icon" href="https://img.icons8.com/?size=100&id=49467&format=png&color=000000" type="image/png">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");    
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #333; /* Fundo cinza */
+      margin: 0;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --light: #ffe6e6;
+      --dark: #000;
+    }
+
+    .container {
+      --bg-color: radial-gradient(circle at 50% 0%,
+          rgba(50, 50, 50, 1) 0%,
+          rgba(12, 12, 12, 1) 100%);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      width: 100%;
+      min-height: 100vh;
+      background-image: var(--bg-color);
+    }
+
+    .category_container {
+      --gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--gap) * 2);
+      width: 100%;
+    }
+
+    .content {
+      --active: 0;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      padding: 2rem;
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .content:hover {
+      --active: 1;
+      width: 100%;
+    }
+
+    .content::before {
+      content: "";
+      position: absolute;
+      z-index: -10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--dark);
+      opacity: 0.6;
+    }
+
+    .content img {
+      position: absolute;
+      z-index: -20;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .content .profile_image {
+      opacity: calc(1 - var(--active));
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .profile_detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      transition: transform 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.01s;
+    }
+
+    .profile_detail span {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--light);
+      white-space: nowrap;
+    }
+
+    .profile_detail p {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--light);
+    }
+
+    .profile_quote {
+      width: 100%;
+      transform: translateY(calc((1 - var(--active)) * (100% + 2.5rem)));
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    }
+
+    .content:hover .profile_quote {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Remover elementos para telas maiores */
+    @media (min-width: 768px) {
+      .container {
+        display: none;
+      }
+    }
+
+    /* Estilo para o ícone fixo no topo */
+    .icon-link {
+      position: fixed;
+      top: 10px; /* Ajuste conforme necessário */
+      right: 10px; /* Ajuste conforme necessário */
+      background: rgba(255, 255, 255, 0);
+      border-radius: 30%;
+      padding: 0;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    
+    .icon-link img {
+      width: 40px; /* Ajuste o tamanho conforme necessário */
+      height: 40px; /* Ajuste o tamanho conforme necessário */
+    }
+
+    header {
+      width: 100%;
+      text-align: left; /* Alinhar à esquerda */
+      padding: 20px 0; /* Espaçamento para o cabeçalho */
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  </style>
+</head>
+
+   <!--CAR1-->
+  <div class="container">
+    <div class="category_container">
+      <div class="content">
+        <a href="LIVROS\Origens - Diarios do Vampiro   Diarios de Stefan - Vol. 1  - L. J. Smith.pdf" download target="_blank">
+          <img src="IMAGENS\1.jpg" class="profession_image">
+          <div class="profile_detail">
+            <span>Diários de Stefan</span>
+            <p>Origens</p>
+          </div>
+          <div class="wrapper">
+            <div class="profile_quote">
+              <p>L. J. Smith</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+       <!--CAR2-->
+      <div class="content">
+        <a href="LIVROS\Diários de Stefan 02 - Sede de sangue - L. J. Smith.pdf" download target="_blank">
+          <img src="IMAGENS\2.jpg" class="profile_image">
+          <div class="profile_detail">
+            <span>Diários de Stefan</span>
+            <p>Sede de Sangue</p>
+          </div>
+          <div class="wrapper">
+            <div class="profile_quote">
+              <p>L. J. Smith</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+       <!--CAR3-->
+      <div class="content">
+        <a href="LIVROS\Diários de Stefan 03 - Desejo - L. J. Smith.pdf" download target="_blank">
+          <img src="IMAGENS\3.jpg" class="profile_image">
+          <div class="profile_detail">
+            <span>Diários de Stefan</span>
+            <p>Desejo</p>
+          </div>
+          <div class="wrapper">
+            <div class="profile_quote">
+              <p>L. J. Smith</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+       <!--CAR4-->
+      <div class="content">
+        <a href="LIVROS\O Estripador - Diarios de Stefan - Vol.  4  - L.J Smith.pdf" download target="_blank">
+          <img src="IMAGENS\4.jpg" class="profile_image">
+          <div class="profile_detail">
+            <span>Diários de Stefan</span>
+            <p>O Estripador</p>
+          </div>
+          <div class="wrapper">
+            <div class="profile_quote">
+              <p>L. J. Smith</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+       <!--CAR5-->
+      <div class="content">
+        <a href="LIVROS\Diário do Stefan 5 - O Asilo.pdf" download target="_blank">
+          <img src="IMAGENS\5.jpg" class="profile_image">
+          <div class="profile_detail">
+            <span>Diários de Stefan</span>
+            <p>O Asilo</p>
+          </div>
+          <div class="wrapper">
+            <div class="profile_quote">
+              <p>L. J. Smith</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      <!--CAR6-->
+      <div class="content">
+        <img src="IMAGENS\6.jpg" class="profile_image">
+          <div class="profile_detail">
+            <span>Diários de Stefan</span>
+            <p>The Compelled</p>
+          </div>
+          <div class="wrapper">
+            <div class="profile_quote">
+              <p>L. J. Smith</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
